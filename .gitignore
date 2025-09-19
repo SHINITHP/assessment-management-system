@@ -1,0 +1,9 @@
+node_modules
+dist
+.env
+
+# PDFs
+backend/reports/*.pdf
+
+*.log
+.DS_Store
