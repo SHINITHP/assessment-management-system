@@ -11,36 +11,27 @@ import {
   FormLabel,
   FormMessage,
 } from "./ui/form";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import z from "zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { signIn } from "@/api/authApi";
 
 const formSchema = z.object({
-  fullName: z
-    .string()
-    .min(6, { message: "FullName must be at least 3 characters" }),
   email: z.string().email({
     message: "Please enter a valid email address.",
   }),
   password: z
     .string()
-    .min(6, { message: "Password must be at least 6 characters" })
-    .max(20, { message: "Password cannot exceed 20 characters" })
-    .regex(/[0-9]/, { message: "Password must contain at least one number" })
-    .regex(/[@$!%*?&]/, {
-      message: "Password must contain at least one special character",
-    }),
+    .min(6, { message: "Password must be at least 6 characters" }),
 });
 
-export const RegisterPage = () => {
+export const LoginPage = ()  => {
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fullName: "",
       email: "",
       password: "",
     },
@@ -49,7 +40,11 @@ export const RegisterPage = () => {
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setIsLoading(true);
-    } catch (error) {
+      const data = await signIn(values);
+      console.log(data)
+
+    } catch (error: any) {
+      console.log(error.response?.data?.message || "Sign-In failed")
     } finally {
       setIsLoading(false);
     }
@@ -64,25 +59,6 @@ export const RegisterPage = () => {
               onSubmit={form.handleSubmit(handleSubmit)}
               className="mt-6 space-y-6"
             >
-              {/* FullName field */}
-              <FormField
-                control={form.control}
-                name="fullName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>FullName</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="Enter your FullName"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
               {/* Email field */}
               <FormField
                 control={form.control}
@@ -108,28 +84,20 @@ export const RegisterPage = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
-
-                    <FormControl className="relative">
-                      <div>
-                        <Input
-                          type={showPassword ? "text" : "password"}
-                          placeholder="Enter your password"
-                          {...field}
-                          className="pr-10"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute bg-transparent right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-700"
-                        >
-                          {showPassword ? (
-                            <EyeOff size={20} />
-                          ) : (
-                            <Eye size={20} />
-                          )}
-                        </button>
-                      </div>
+                    <div className="flex items-center justify-between">
+                      <FormLabel>Password</FormLabel>
+                      <Button asChild variant="link" size="sm">
+                        <Link to="#" className="text-sm">
+                          Forgot your Password?
+                        </Link>
+                      </Button>
+                    </div>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Enter your password"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -141,8 +109,8 @@ export const RegisterPage = () => {
                 {isLoading ? (
                   <Loader2 className="size-4 animate-spin" />
                 ) : (
-                  "Sign Up"
-                )}
+                  "Sign In"
+                )}{" "}
               </Button>
             </form>
           </Form>
@@ -187,13 +155,13 @@ export const RegisterPage = () => {
 
         <div className="p-3">
           <p className="text-accent-foreground text-center text-sm">
-            Already have an account ?
+            Don't have an account ?
             <Button asChild variant="link" className="px-2">
-              <Link to="/?authMode=SignIn">Sign-in</Link>
+              <Link to="/?authMode=sign-up">Create account</Link>
             </Button>
           </p>
         </div>
       </div>
     </section>
   );
-};
+}

@@ -75,10 +75,10 @@ export const HeroHeader = () => {
             {/* Buttons */}
             <div className="hidden lg:flex lg:items-center lg:gap-3">
               <Button asChild variant="outline" size="sm">
-                <Link to="/?authMode=SignIn">Login</Link>
+                <Link to="/?authMode=sign-in">Login</Link>
               </Button>
               <Button asChild size="sm">
-                <Link to="/?authMode=SignUp">Sign Up</Link>
+                <Link to="/?authMode=sign-up">Sign Up</Link>
               </Button>
             </div>
           </div>
@@ -99,10 +99,10 @@ export const HeroHeader = () => {
                 ))}
                 <div className="flex flex-col gap-3 mt-4">
                   <Button asChild variant="outline" size="sm">
-                    <Link to="/?authMode=SignIn">Login</Link>
+                    <Link to="/?authMode=sign-in">Login</Link>
                   </Button>
                   <Button asChild size="sm">
-                    <Link to="/?authMode=SignUp">Sign Up</Link>
+                    <Link to="/?authMode=sign-up">Sign Up</Link>
                   </Button>
                 </div>
               </ul>

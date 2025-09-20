@@ -5,23 +5,30 @@ import AuthPage from "./AuthPage";
 const Home = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  type AuthMode = "sign-in" | "sign-up" | "forgot-password" | "verify-otp";
+
   const authModeParam = searchParams.get("authMode");
 
-  const authMode: "SignIn" | "SignUp" =
-    authModeParam === "SignIn"
-      ? "SignIn"
-      : authModeParam === "SignUp"
-      ? "SignUp"
-      : "SignIn"; // default
+  const authMode: AuthMode =
+    authModeParam === "sign-in"
+      ? "sign-in"
+      : authModeParam === "sign-up"
+      ? "sign-up"
+      : authModeParam === "forgot-password"
+      ? "forgot-password"
+      : authModeParam === "verify-otp"
+      ? "verify-otp"
+      : "sign-in";
 
-  const handleCloseModal = () => {
+
+      const handleCloseModal = () => {
     navigate("/", { replace: true });
   };
 
   return (
     <>
       <HeroSection />;
-       {authModeParam && (
+      {authModeParam && (
         <AuthPage authMode={authMode || "login"} onClose={handleCloseModal} />
       )}
     </>
