@@ -1,6 +1,4 @@
-import React from "react";
 
-import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { LoginPage } from "@/components/sign-in";

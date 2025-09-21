@@ -27,9 +27,9 @@ const Home = () => {
 
   return (
     <>
-      <HeroSection />;
+      <HeroSection />
       {authModeParam && (
-        <AuthPage authMode={authMode || "login"} onClose={handleCloseModal} />
+        <AuthPage authMode={authMode} onClose={handleCloseModal} />
       )}
     </>
   );

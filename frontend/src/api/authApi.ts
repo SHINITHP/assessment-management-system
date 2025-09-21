@@ -18,6 +18,10 @@ export const signUp = async (
   return response;
 };
 
+// export const resendOtp = async () => {
+
+// }
+
 export const signIn = async (
   payload: ISignInPayload
 ): Promise<AxiosResponse<IAuthResponse>> => {

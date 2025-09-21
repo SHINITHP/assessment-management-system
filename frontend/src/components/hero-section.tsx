@@ -1,12 +1,7 @@
 "use client";
 import React from "react";
-import { ArrowRight, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { TextEffect } from "@/components/ui/text-effect";
-import { AnimatedGroup } from "@/components/ui/animated-group";
-import { HeroHeader } from "./header";
 import { Variants } from "framer-motion";
-import { Link } from "react-router";
 
 const transitionVariants: Variants = {
   hidden: { opacity: 0, filter: "blur(12px)", y: 12 },
@@ -21,7 +16,6 @@ const transitionVariants: Variants = {
 export const HeroSection: React.FC = () => {
   return (
     <>
-      <HeroHeader />
       <main className="overflow-hidden">
         {/* Background blobs */}
         <div

@@ -16,6 +16,7 @@ import z from "zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signUp } from "@/api/authApi";
+import { toast } from "react-toastify";
 
 const formSchema = z.object({
   fullName: z
@@ -54,10 +55,13 @@ export const RegisterPage = () => {
       setIsLoading(true);
 
       const response = await signUp(values);
-      console.log(response)
+      console.log(response);
       navigate(`/?authMode=verify-otp&token=${response.data.user.token}`);
-    } catch (error) {
+    } catch (error: any) {
       console.log("error", error);
+      toast.error(
+        error?.response?.data?.message || "Something went wrong. Try again!"
+      );
     } finally {
       setIsLoading(false);
     }

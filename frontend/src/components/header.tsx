@@ -1,35 +1,45 @@
-import { Logo } from '@/components/logo'
-import { Menu, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import React from 'react'
-import { cn } from '@/lib/utils'
-import { Link } from 'react-router'
+import { Logo } from "@/components/logo";
+import { LogOut, Menu, Stethoscope, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import React, { useEffect } from "react";
+import { cn } from "@/lib/utils";
+import { Link, useNavigate } from "react-router-dom";
 
 const menuItems = [
-  { name: 'Features', href: '#link' },
-  { name: 'Solution', href: '#link' },
-  { name: 'Pricing', href: '#link' },
-  { name: 'About', href: '#link' },
-]
+  { name: "Features", href: "#link" },
+  { name: "Solution", href: "#link" },
+  { name: "Pricing", href: "#link" },
+  { name: "About", href: "#link" },
+];
 
 export const HeroHeader = () => {
-  const [menuState, setMenuState] = React.useState(false)
-  const [isScrolled, setIsScrolled] = React.useState(false)
+  const navigate = useNavigate();
 
-  React.useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  const [menuState, setMenuState] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  const isAuthenticated = !!localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleLogout = () => {
+    // call the backend here..
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("email");
+    navigate("/?authMode=sign-in", { replace: true });
+  };
 
   return (
     <header>
-      <nav className="fixed z-20 w-full px-2">
+      <nav className="fixed z-20 w-full px-2 border-b">
         <div
           className={cn(
-            'mx-auto mt-2 max-w-7xl px-6 transition-all duration-300 lg:px-12',
+            "mx-auto mt-2 max-w-8xl px-6 transition-all duration-300 lg:px-12",
             isScrolled &&
-              'bg-background/50 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5'
+              "bg-background/50 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5"
           )}
         >
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
@@ -38,14 +48,14 @@ export const HeroHeader = () => {
               <Link
                 to="/"
                 aria-label="home"
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-2 gap-2 text-lg"
               >
-                <Logo />
+                <Stethoscope /> MEDICAL CARE
               </Link>
 
               <button
                 onClick={() => setMenuState(!menuState)}
-                aria-label={menuState ? 'Close Menu' : 'Open Menu'}
+                aria-label={menuState ? "Close Menu" : "Open Menu"}
                 className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
               >
                 {menuState ? (
@@ -59,7 +69,7 @@ export const HeroHeader = () => {
             {/* Desktop Menu */}
             <div className="hidden lg:block">
               <ul className="flex gap-8 text-sm">
-                {menuItems.map((item, index) => (
+                {/* {menuItems.map((item, index) => (
                   <li key={index}>
                     <Link
                       to={item.href}
@@ -68,18 +78,26 @@ export const HeroHeader = () => {
                       {item.name}
                     </Link>
                   </li>
-                ))}
+                ))} */}
               </ul>
             </div>
 
             {/* Buttons */}
             <div className="hidden lg:flex lg:items-center lg:gap-3">
-              <Button asChild variant="outline" size="sm">
-                <Link to="/?authMode=sign-in">Login</Link>
-              </Button>
-              <Button asChild size="sm">
-                <Link to="/?authMode=sign-up">Sign Up</Link>
-              </Button>
+              {isAuthenticated ? (
+                <Button variant="outline" size="sm" onClick={handleLogout}>
+                  <LogOut /> Logout
+                </Button>
+              ) : (
+                <>
+                  <Button asChild variant="outline" size="sm">
+                    <Link to="/?authMode=sign-in">Login</Link>
+                  </Button>
+                  <Button asChild size="sm">
+                    <Link to="/?authMode=sign-up">Sign Up</Link>
+                  </Button>
+                </>
+              )}
             </div>
           </div>
 
@@ -98,12 +116,20 @@ export const HeroHeader = () => {
                   </li>
                 ))}
                 <div className="flex flex-col gap-3 mt-4">
-                  <Button asChild variant="outline" size="sm">
-                    <Link to="/?authMode=sign-in">Login</Link>
-                  </Button>
-                  <Button asChild size="sm">
-                    <Link to="/?authMode=sign-up">Sign Up</Link>
-                  </Button>
+                  {isAuthenticated ? (
+                    <Button variant="outline" size="sm" onClick={handleLogout}>
+                      <LogOut /> Logout
+                    </Button>
+                  ) : (
+                    <>
+                      <Button asChild variant="outline" size="sm">
+                        <Link to="/?authMode=sign-in">Login</Link>
+                      </Button>
+                      <Button asChild size="sm">
+                        <Link to="/?authMode=sign-up">Sign Up</Link>
+                      </Button>
+                    </>
+                  )}
                 </div>
               </ul>
             </div>
@@ -111,5 +137,5 @@ export const HeroHeader = () => {
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};

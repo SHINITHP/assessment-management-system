@@ -10,9 +10,10 @@ export const EnterOTPPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
   const navigate = useNavigate();
-
+  const [isResending, setIsResending] = useState(false);
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
+  const email = sessionStorage.getItem("email");
 
   useEffect(() => {
     if (!token) {
@@ -31,6 +32,11 @@ export const EnterOTPPage = () => {
     }
   };
 
+  const handleResendOTP = () => {
+    try {
+    } catch (error) {}
+  };
+
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
     index: number
@@ -47,33 +53,38 @@ export const EnterOTPPage = () => {
     setIsLoading(true);
 
     try {
-      const email = localStorage.getItem("email");
       if (!email || !token) {
         toast.warn("Session expired. Please request OTP again.");
         navigate("/signup");
         return;
       }
 
-      const response = await verifyOTP({
+      await verifyOTP({
         email,
         otp: joinedOtp,
         token,
       });
       toast.success("User verified successfully");
-      
+      navigate("/dashboard");
     } catch (err: any) {
       console.error(err);
-      toast.error(err?.response?.data?.message || "Something went wrong. Try again!")
+      toast.error(
+        err?.response?.data?.message || "Something went wrong. Try again!"
+      );
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <section className="flex w-full items-center justify-center">
+    <section className="flex flex-col w-full items-center justify-center">
+      <p className="text-xs py-2">
+        Please enter the OTP sent to your email: <strong>{email}</strong>
+      </p>
+
       <div className="rounded-lg p-8 max-w-md w-full">
-        <form onSubmit={handleSubmit} className="space-y-6 text-center">
-          <div className="flex justify-center gap-2">
+        <form onSubmit={handleSubmit} className=" text-center py-4">
+          <div className="flex justify-center gap-2 ">
             {otp.map((val, index) => (
               <Input
                 key={index}
@@ -89,6 +100,16 @@ export const EnterOTPPage = () => {
               />
             ))}
           </div>
+          {/* <div className="w-full text-end pr-8">
+            <button
+              type="button"
+              onClick={handleResendOTP} // implement this function
+              className="text-sm text-blue-600 hover:underline focus:outline-none disabled:opacity-50"
+              disabled={isResending} // optional loading state
+            >
+              {isResending ? "Resending..." : "Resend OTP"}
+            </button>
+          </div> */}
 
           <Button
             type="submit"

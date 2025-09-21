@@ -2,7 +2,7 @@ import { LogoIcon } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Form,
   FormControl,
@@ -13,9 +13,10 @@ import {
 } from "./ui/form";
 import { Loader2 } from "lucide-react";
 import z from "zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { signIn } from "@/api/authApi";
+import { toast } from "react-toastify";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -26,7 +27,17 @@ const formSchema = z.object({
     .min(6, { message: "Password must be at least 6 characters" }),
 });
 
-export const LoginPage = ()  => {
+export const LoginPage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isAuthenticated = !!localStorage.getItem("accessToken");
+
+    if (isAuthenticated) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, []);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -40,11 +51,12 @@ export const LoginPage = ()  => {
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setIsLoading(true);
-      const data = await signIn(values);
-      console.log(data)
-
+      await signIn(values);
+      toast.success("Signed in successfully!");
+      navigate("/dashboard");
     } catch (error: any) {
-      console.log(error.response?.data?.message || "Sign-In failed")
+      console.log(error.response?.data?.message || "Sign-In failed");
+      toast.error(error.response?.data?.message || "Sign-In failed");
     } finally {
       setIsLoading(false);
     }
@@ -164,4 +176,4 @@ export const LoginPage = ()  => {
       </div>
     </section>
   );
-}
+};
