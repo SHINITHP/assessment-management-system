@@ -1,0 +1,252 @@
+{
+    "assessment_id": "as_card_01",
+    "template": {
+      "header": "Cardiac Assessment Report",
+      "footer": "Generated on {date}",
+      "styles": "bg-white text-black"
+    },
+    "sections": [
+        {
+          "title": "Overall Health Score",
+          "fields": [
+            {
+              "label": "Health Score",
+              "jsonPath": "accuracy",
+              "unit": "%",
+              "classifications": [
+                { "min": 0, "max": 25, "label": "Poor", "color": "red" },
+                { "min": 25, "max": 50, "label": "Fair", "color": "yellow" },
+                { "min": 50, "max": 75, "label": "Good", "color": "green" },
+                { "min": 75, "max": 100, "label": "Great", "color": "green" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Key Body Vitals",
+          "fields": [
+            {
+              "label": "Heart Rate",
+              "jsonPath": "vitalsMap.vitals.heart_rate",
+              "unit": "beats/min",
+              "classifications": [
+                { "min": 0, "max": 60, "label": "Low", "color": "orange" },
+                { "min": 60, "max": 100, "label": "Normal", "color": "green" },
+                { "min": 100, "max": 999, "label": "High", "color": "red" }
+              ]
+            },
+            {
+              "label": "Respiration Rate",
+              "jsonPath": "vitalsMap.vitals.resp_rate",
+              "unit": "breaths/min",
+              "classifications": [
+                { "min": 12, "max": 20, "label": "Normal", "color": "green" },
+                { "min": 20, "max": 30, "label": "Elevated", "color": "yellow" },
+                { "min": 0, "max": 11, "label": "Low", "color": "orange" },
+                { "min": 30, "max": 999, "label": "High", "color": "red" }
+              ]
+            },
+            {
+              "label": "Oxygen Rate",
+              "jsonPath": "vitalsMap.vitals.oxy_sat_prcnt",
+              "unit": "%",
+              "classifications": [
+                { "min": 95, "max": 100, "label": "Normal", "color": "green" },
+                { "min": 90, "max": 94, "label": "Low", "color": "yellow" },
+                { "min": 0, "max": 89, "label": "Critical", "color": "red" }
+              ]
+            },
+            {
+              "label": "Blood Pressure (Systolic)",
+              "valuePath": "vitalsMap.vitals.bp_sys",
+              "unit": "mmHg",
+              "classifications": [
+                { "min": 0, "max": 120, "label": "Normal", "color": "green" },
+                { "min": 120, "max": 140, "label": "Elevated", "color": "yellow" },
+                { "min": 140, "max": 999, "label": "High", "color": "red" }
+              ]
+            },
+            {
+              "label": "Blood Pressure (Diastolic)",
+              "valuePath": "vitalsMap.vitals.bp_dia",
+              "unit": "mmHg",
+              "classifications": [
+                { "min": 0, "max": 80, "label": "Normal", "color": "green" },
+                { "min": 80, "max": 90, "label": "Elevated", "color": "yellow" },
+                { "min": 90, "max": 999, "label": "High", "color": "red" }
+              ]
+            }
+          ]
+        },
+
+        {
+          "title": "Heart Health",
+          "fields": [
+            {
+              "label": "SDNN",
+              "jsonPath": "vitalsMap.metadata.heart_scores.sdnn",
+              "unit": "ms",
+              "classifications": [
+                { "min": 0, "max": 50, "label": "Low", "color": "red" },
+                { "min": 50, "max": 100, "label": "Normal", "color": "green" },
+                { "min": 100, "max": 999, "label": "High", "color": "yellow" }
+              ]
+            },
+            {
+              "label": "RMSSD",
+              "jsonPath": "vitalsMap.metadata.heart_scores.rmssd",
+              "unit": "ms",
+              "classifications": [
+                { "min": 0, "max": 25, "label": "Low", "color": "red" },
+                { "min": 25, "max": 50, "label": "Normal", "color": "green" },
+                { "min": 50, "max": 999, "label": "High", "color": "yellow" }
+              ]
+            },
+            {
+              "label": "PNN50",
+              "jsonPath": "vitalsMap.metadata.heart_scores.pNN50_per",
+              "unit": "%",
+              "classifications": [
+                { "min": 0, "max": 1, "label": "Low", "color": "red" },
+                { "min": 1, "max": 5, "label": "Normal", "color": "green" },
+                { "min": 5, "max": 999, "label": "High", "color": "yellow" }
+              ]
+            },
+            {
+              "label": "Cardiac Output",
+              "jsonPath": "vitalsMap.metadata.cardiovascular.cardiac_out",
+              "unit": "L/min",
+              "classifications": [
+                { "min": 0, "max": 4, "label": "Low", "color": "red" },
+                { "min": 4, "max": 8, "label": "Normal", "color": "green" },
+                { "min": 8, "max": 10, "label": "High", "color": "yellow" }
+              ]
+            },
+            {
+              "label": "Heart Utilised",
+              "jsonPath": "vitalsMap.metadata.heart_scores.heart_utilized",
+              "unit": "%",
+              "classifications": [
+                { "min": 0, "max": 50, "label": "Low", "color": "yellow" },
+                { "min": 50, "max": 75, "label": "Moderate", "color": "green" },
+                { "min": 75, "max": 999, "label": "High", "color": "red" }
+              ]
+            }
+          ]
+        },
+
+        {
+          "title": "Fitness Assessment",
+          "fields": [
+            {
+              "label": "Cardiovascular Endurance",
+              "jsonPath": "exercises[?(@.id==235)].setList[0].time",
+              "unit": "seconds",
+              "classifications": [
+                { "min": 0, "max": 30, "label": "Poor", "color": "red" },
+                { "min": 30, "max": 60, "label": "Fair", "color": "yellow" },
+                { "min": 60, "max": 90, "label": "Good", "color": "green" },
+                { "min": 90, "max": 100, "label": "Great", "color": "green" }
+              ]
+            }
+          ]
+        },
+
+        {
+          "title": "Body Composition",
+          "fields": [
+            {
+              "label": "BMI",
+              "jsonPath": "bodyCompositionData.BMI",
+              "unit": "",
+              "classifications": [
+                { "min": 0, "max": 18.5, "label": "Underweight", "color": "blue" },
+                { "min": 18.5, "max": 25, "label": "Normal", "color": "green" },
+                { "min": 25, "max": 999, "label": "Overweight", "color": "red" }
+              ]
+            },
+            {
+              "label": "Body Fat Percentage",
+              "jsonPath": "bodyCompositionData.BFC",
+              "unit": "%",
+              "classifications": [
+                  { "min": 0, "max": 5, "label": "Low", "color": "yellow" },
+                  { "min": 0, "max": 0.9, "label": "Normal", "color": "green" },
+                  { "min": 0.9, "max": 999, "label": "High", "color": "red" }
+                ]
+            },
+            {
+              "label": "A/G Ratio",
+              "jsonPath": "bodyCompositionData.AGR",
+              "unit": "",
+              "classifications": [
+                { "min": 0, "max": 0.9, "label": "Normal", "color": "green" },
+                { "min": 0.9, "max": 100, "label": "High", "color": "red" }
+              ]
+            },
+            {
+              "label": "Lean Mass Index",
+              "jsonPath": "bodyCompositionData.LMI",
+              "unit": "kg/m2",
+              "classifications": [
+                { "min": 0, "max": 10.5, "label": "Low", "color": "red" },
+                { "min": 10.5, "max": 13.5, "label": "Normal", "color": "yellow" },
+                { "min": 13.5, "max": 40, "label": "High", "color": "green" }
+              ]
+            },
+            {
+              "label": "Fat Mass Index",
+              "jsonPath": "bodyCompositionData.FMI",
+              "unit": "kg/m2",
+              "classifications": [
+                { "min": 0, "max": 3, "label": "Low", "color": "yellow" },
+                { "min": 3, "max": 6, "label": "Normal", "color": "green" },
+                { "min": 6, "max": 12, "label": "High", "color": "red" }
+              ]
+            },
+            {
+              "label": "Waist-Hip Ratio",
+              "jsonPath": "bodyCompositionData.WHR",
+              "unit": "",
+              "classifications": [
+                { "min": 0, "max": 0.75, "label": "Low", "color": "red" },
+                { "min": 0.75, "max": 0.86, "label": "Normal", "color": "green" },
+                { "min": 0.86, "max": 2, "label": "High", "color": "yellow" }
+              ]
+            },
+            {
+              "label": "Waist-Height Ratio",
+              "jsonPath": "bodyCompositionData.WHGR",
+              "unit": "",
+              "classifications": [
+                { "min": 0, "max": 5, "label": "Low", "color": "yellow" },
+                { "min": 0, "max": 0.9, "label": "Normal", "color": "green" },
+                { "min": 0.9, "max": 999, "label": "High", "color": "red" }
+              ]
+            },
+            {
+              "label": "Metabolic Rate",
+              "jsonPath": "bodyCompositionData.BMR",
+              "unit": "kCal",
+              "classifications": [
+                { "min": 0, "max": 1600, "label": "Low", "color": "yellow" },
+                { "min": 1600, "max": 1800, "label": "Normal", "color": "green" },
+                { "min": 1800, "max": 2499, "label": "High", "color": "red" }
+              ]
+            },
+            {
+              "label": "Metabolic Age",
+              "jsonPath": "bodyCompositionData.M_Age",
+              "unit": "Actual Age: bodyCompositionData.Age",
+              "classifications": [
+                { "min": 0, "max": 5, "label": "Low", "color": "yellow" },
+                { "min": 0, "max": 0.9, "label": "Normal", "color": "green" },
+                { "min": 0.9, "max": 999, "label": "High", "color": "red" }
+              ]
+            }
+
+          ]
+        }
+           
+    ]
+}
