@@ -456,5 +456,276 @@ export const assessments = [
       wellness_score: 84
     },
     weight: 20
+  },
+  {
+    session_id: "session_003",
+    accuracy: 65,
+    assessmentResultId: "-PQ12BCrXy7pL9mJk4vW",
+    assessment_id: "as_card_01",
+    bodyCompositionData: {
+      AGR: "1.20",
+      Age: "35",
+      BFC: "15.5",
+      BMI: "22.8",
+      BMR: "1750.3",
+      FM: "12.5",
+      FMI: "4.2",
+      HeightM: "170.2",
+      LM: "70.5",
+      LMI: "12.3",
+      M_Age: "38",
+      WHGR: "0.48",
+      WHR: "0.82"
+    },
+    exercises: [
+      {
+        analysisList: [
+          "Posture is well-aligned with minor shoulder tilt.",
+          "Head position is optimal."
+        ],
+        analysisScore: 85,
+        assignReps: 1,
+        correctReps: 1,
+        id: 73,
+        name: "Frontal body view",
+        setList: [
+          {
+            additionalFields: [
+              {
+                fieldName: "accuracy",
+                fieldText: "Score",
+                fieldUnit: "%",
+                fieldValue: "85.0",
+                shouldDisplay: false
+              }
+            ],
+            correctReps: 1,
+            incorrectReps: 0,
+            isSkipped: false,
+            time: 15,
+            totalReps: 1
+          }
+        ],
+        side: "right",
+        tipsList: [
+          "Maintain shoulder alignment with regular stretches."
+        ],
+        totalReps: 1,
+        totalSets: 1,
+        variationId: "",
+        variationName: ""
+      },
+      {
+        analysisList: [
+          "Slight forward lean, but spine is straight.",
+          "Knees slightly flexed."
+        ],
+        analysisScore: 60,
+        assignReps: 1,
+        correctReps: 1,
+        id: 74,
+        name: "Side body view",
+        setList: [
+          {
+            additionalFields: [
+              {
+                fieldName: "accuracy",
+                fieldText: "Score",
+                fieldUnit: "%",
+                fieldValue: "60.0",
+                shouldDisplay: false
+              }
+            ],
+            correctReps: 1,
+            incorrectReps: 0,
+            isSkipped: false,
+            time: 18,
+            totalReps: 1
+          }
+        ],
+        side: "right",
+        tipsList: [
+          "Focus on core strength to reduce lean."
+        ],
+        totalReps: 1,
+        totalSets: 1,
+        variationId: "",
+        variationName: ""
+      },
+      {
+        assignReps: 15,
+        correctReps: 12,
+        id: 235,
+        name: "Jog test",
+        setList: [
+          {
+            additionalFields: [
+              {
+                fieldName: "accuracy",
+                fieldText: "Score",
+                fieldUnit: "%",
+                fieldValue: "80.0",
+                shouldDisplay: false
+              }
+            ],
+            correctReps: 12,
+            incorrectReps: 3,
+            isSkipped: false,
+            time: 45,
+            totalReps: 15
+          }
+        ],
+        side: "right",
+        totalReps: 15,
+        totalSets: 1,
+        variationId: "",
+        variationName: ""
+      },
+      {
+        assignReps: 30,
+        correctReps: 25,
+        id: 259,
+        name: "Squat",
+        setList: [
+          {
+            additionalFields: [
+              {
+                fieldName: "accuracy",
+                fieldText: "Score",
+                fieldUnit: "%",
+                fieldValue: "83.33",
+                shouldDisplay: false
+              },
+              {
+                fieldName: "reps",
+                fieldText: "Reps",
+                fieldUnit: "reps",
+                fieldValue: "25",
+                shouldDisplay: true
+              }
+            ],
+            correctReps: 25,
+            incorrectReps: 5,
+            isSkipped: false,
+            time: 120,
+            totalReps: 30
+          }
+        ],
+        side: "right",
+        totalReps: 30,
+        totalSets: 1,
+        variationId: "",
+        variationName: ""
+      },
+      {
+        assignReps: 1,
+        correctReps: 1,
+        id: 281,
+        name: "Stand and reach",
+        setList: [
+          {
+            additionalFields: [
+              {
+                fieldName: "accuracy",
+                fieldText: "Score",
+                fieldUnit: "%",
+                fieldValue: "90.0",
+                shouldDisplay: false
+              },
+              {
+                fieldName: "Distance",
+                fieldText: "Distance",
+                fieldUnit: "CM",
+                fieldValue: "25.0",
+                shouldDisplay: false
+              }
+            ],
+            correctReps: 1,
+            incorrectReps: 0,
+            isSkipped: false,
+            time: 12,
+            totalReps: 1
+          }
+        ],
+        side: "right",
+        totalReps: 1,
+        totalSets: 1,
+        variationId: "",
+        variationName: ""
+      }
+    ],
+    finalPainScore: "pending",
+    gender: "female",
+    height: 170,
+    initialPainScore: 0,
+    initialVAS: 0,
+    isLandmarksUploaded: true,
+    laterPainScore: "pending",
+    reportLink: "https://firebasestorage.googleapis.com/v0/b/rootallyai.appspot.com/o/reports%2FX9k4PqLmRt8jY5vNz12x3TT4hPQ4%2FyH9tApc6v9xZk9mBcD5eGGMneB0u2%2Fxyz_1234.pdf?alt=media&token=abc12345-6789-4def-9012-345678901234",
+    timeElapsed: 150,
+    timestamp: 1750851234567,
+    vitalsMap: {
+      api_key: "CNCPg45zbVxGlB7r74xb",
+      employee_id: "SCAN_USER",
+      entry_time: "2024-10-01 09:15:00.000000+00:00",
+      health_risk_score: 12,
+      metadata: {
+        cardiovascular: {
+          cardiac_out: 5.9,
+          map: 92,
+          prq: 3.6
+        },
+        fps: 110,
+        glucose_info: {
+          diabetes_control_score: 65.0,
+          hba1c: 5.1,
+          status: "alpha"
+        },
+        heart_scores: {
+          HRMax: 185,
+          HRR: "120",
+          THRR: "90 - 130",
+          heart_utilized: "55",
+          pNN50_per: 45.20,
+          rmssd: 30.15,
+          sdnn: 55.30,
+          stress_index: 1.2,
+          zone_details: {
+            highZoneRange: 92,
+            lowZoneRange: "60",
+            zone: "Moderate"
+          }
+        },
+        physiological_scores: {
+          bloodvolume: "5200.0",
+          bmi: "22.8",
+          bodyfat: "15.5",
+          cal_carb: "85.0",
+          cal_fat: "15.0",
+          dob: "1990-05-15",
+          gender: "female",
+          height: "170.0",
+          intensity: "Moderate",
+          tbw: "50.0",
+          tbwp: "52.0",
+          vo2max: "55.0",
+          weight: "66.0"
+        }
+      },
+      posture: "resting",
+      scan_completion_time: "2024-10-01T09:15:05.000000+00:00",
+      scan_id: "7e890abc-5fed-4a12-8b9c-3d45f6e7890a",
+      statusCode: 200,
+      user_id: "2def5678-9abc-4e12-3456-7890fghi1234",
+      vitals: {
+        bp_dia: 78,
+        bp_sys: 118,
+        heart_rate: 72,
+        oxy_sat_prcnt: 97,
+        resp_rate: 18
+      },
+      wellness_score: 88
+    },
+    weight: 66
   }
 ];

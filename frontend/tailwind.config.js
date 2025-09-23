@@ -49,7 +49,13 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+			"navy-header": "hsl(var(--navy-header))",
+        	"light-gray": "hsl(var(--light-gray))",
+        	"health-good": "hsl(var(--health-good))",
+        	"health-fair": "hsl(var(--health-fair))",
+        	"health-poor": "hsl(var(--health-poor))",
+        	"blue-accent": "hsl(var(--blue-accent))",
   		}
   	}
   },

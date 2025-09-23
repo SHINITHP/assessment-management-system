@@ -1,58 +1,90 @@
-import puppeteer from 'puppeteer';
-import fs from 'fs-extra';
-import path from 'path';
-import ejs from 'ejs';
-import { extractValue, classifyValue } from './dataExtractor';
+import puppeteer from "puppeteer";
+import fs from "fs-extra";
+import path from "path";
+import ejs from "ejs";
+import {
+  extractValue,
+  classifyValue,
+  extractArrayValue,
+} from "./dataExtractor";
 
-export async function generatePDF(sessionId: string, data: any, config: any): Promise<string> {
+export async function generatePDF(
+  sessionId: string,
+  data: any,
+  config: any
+): Promise<string> {
+
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const assessmentId = data.assessment_id || "unknown";
+  const uniqueId = `${sessionId}_${assessmentId}_${timestamp}`;
+  const pdfFilename = `${uniqueId}.pdf`;
+
   const renderedData = {
     header: config.template.header,
-    footer: config.template.footer.replace('{date}', new Date().toLocaleDateString()),
+    footer: new Date().toLocaleDateString(),
+
     sections: (config.sections || []).map((section: any) => ({
       title: section.title,
       fields: (section.fields || []).map((field: any) => {
         const path = field.valuePath || field.jsonPath;
-        if (!path) {
-          console.log("Skipping field due to missing path:", field.label);
-          return {
-            label: field.label,
-            value: 'N/A',
-            isArray: false,
-            unit: field.unit || '',
-            classification: '',
-            colorClass: ''
-          };
-        }
-        const value = extractValue(data, path);
-        const isArray = Array.isArray(value);
-        const score = field.scorePath ? parseFloat(extractValue(data, field.scorePath)) : parseFloat(value);
+        if (!path) return null;
+
+        const value = extractValue(data, path); //extract path value from data.ts
+        const isArray = Array.isArray(value); // to find the field is an array or a single object!
+        const score = parseFloat(value); //extract path value from data.ts
         const cls = classifyValue(score || value, field.classifications || []);
+        const clsArray = field.classifications || [];
+
         return {
-          label: field.label,
+          label: field.label || "",
           value: isArray ? value : value.toString(),
           isArray,
-          unit: field.unit || '',
-          classification: cls.label,
-          colorClass: cls.color ? `text-${cls.color}-500` : ''
+          unit: field.unit || "",
+          clsLabel: cls.label,
+          color: cls.color,
+          textColorClass: cls.color ? `text-${cls.color}-600` : "text-gray-800", // for span text
+          bgColorClass: cls.color ? `bg-${cls.color}-100` : "bg-gray-200", // for bg div
+          colorClass: cls.color ? `text-${cls.color}-500` : "",
+          classifications: clsArray.map((c: any) => ({
+            label: c.label,
+            color: c.color || "yellow-600",
+            bgColor: c.color || "rgba(253, 230, 138, 0.5)", // optional for bg styling
+            min: c.min,
+          })),
+          sections: (field.sections || []).map((section: any) => {
+            const sectionValue = extractArrayValue(data, section.path) || [];
+            return {
+              label: section.label,
+              value: [sectionValue],
+              isArray: Array.isArray(sectionValue),
+            };
+          }),
         };
-      })
-    }))
+      }),
+    })),
   };
 
-  const templatePath = path.join(__dirname, '../../templates/report.ejs');
+  const templatePath = path.join(__dirname, "../../templates/report.ejs");
   const templateExists = fs.existsSync(templatePath);
   if (!templateExists) {
     throw new Error(`Template file not found: ${templatePath}`);
   }
   const html = await ejs.renderFile(templatePath, renderedData);
 
-  const pdfPath = path.join(__dirname, '../../reports', `${sessionId}.pdf`);
-  const dirExists = fs.existsSync(path.dirname(pdfPath));
+  const pdfPath = path.join(__dirname, "../../reports", pdfFilename);
   await fs.ensureDir(path.dirname(pdfPath));
-  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   const page = await browser.newPage();
-  await page.setContent(html, { waitUntil: 'networkidle0' });
-  await page.pdf({ path: pdfPath, format: 'A4' });
+  await page.setContent(html, { waitUntil: "networkidle0" });
+  await page.pdf({
+    path: pdfPath,
+    format: "A4",
+    printBackground: true,
+    displayHeaderFooter: false,
+  });
   await browser.close();
   return pdfPath;
 }
