@@ -16,32 +16,18 @@ const transitionVariants: Variants = {
 export const HeroSection: React.FC = () => {
   return (
     <>
-      <main className="overflow-hidden">
-        {/* Background blobs */}
-        <div
-          aria-hidden
-          className="absolute inset-0 isolate hidden opacity-65 contain-strict lg:block"
-        >
-          <div className="w-140 h-320 -translate-y-87.5 absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
-          <div className="h-320 absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
-          <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
-        </div>
-
+      <main className="overflow-hidden h-screen flex justify-center items-center">
         <section>
-          <div className="relative pt-24 md:pt-36">
-            {/* Animated background image */}
-            
-
+          <div className="relative">
             {/* Hero content */}
-            <div className="mx-auto max-w-7xl px-6 text-center sm:mx-auto lg:mr-auto lg:mt-0">
-
+            <div className="mx-auto max-w-7xl text-center sm:mx-auto lg:mr-auto lg:mt-0">
               <TextEffect
                 preset="fade-in-blur"
                 speedSegment={0.3}
                 as="h1"
-                className="mx-auto mt-8 max-w-4xl text-balance text-5xl max-md:font-semibold md:text-7xl lg:mt-16 xl:text-[5.25rem]"
+                className="mx-auto max-w-4xl text-balance text-5xl max-md:font-semibold md:text-7xl xl:text-[5.25rem]"
               >
-                Modern Solutions for Customer Engagement
+                Advanced Tools for Medical Assessment Management
               </TextEffect>
 
               <TextEffect
@@ -52,8 +38,9 @@ export const HeroSection: React.FC = () => {
                 as="p"
                 className="mx-auto mt-8 max-w-2xl text-balance text-lg"
               >
-                Highly customizable components for building modern websites and
-                applications that look and feel the way you mean it.
+                Customizable solutions to streamline medical assessments,
+                enhancing patient care with intuitive interfaces and precise
+                workflows.
               </TextEffect>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User } from "./user.model";
+import { User } from "./userModel";
 import {
   createOTPToken,
   generateOTP,

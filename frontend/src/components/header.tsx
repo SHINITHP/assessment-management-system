@@ -34,13 +34,11 @@ export const HeroHeader = () => {
 
   return (
     <header>
-      <nav className="fixed z-20 w-full px-2 border-b">
+      <nav className={`fixed z-20 bg-white w-full px-2 ${menuState ? "" :"border-b"}`}>
         <div
-          className={cn(
-            "mx-auto mt-2 max-w-8xl px-6 transition-all duration-300 lg:px-12",
-            isScrolled &&
-              "bg-background/50 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5"
-          )}
+          className={
+            "mx-auto mt-2 max-w-8xl px-6 transition-all duration-300 lg:px-12"
+            }
         >
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
             {/* Logo and Mobile Button */}

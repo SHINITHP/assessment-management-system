@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import { reportGenerator } from './report.controller';
+import { reportGenerator, getAssessments } from './report.controller';
 const router = Router();
 
-router.post('/generate-report', reportGenerator);
+router.get('/', getAssessments);
+router.post('/generate-report/:session_Id', reportGenerator);
 
 export default router;

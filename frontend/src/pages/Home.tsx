@@ -1,6 +1,7 @@
 import { HeroSection } from "@/components/hero-section";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import AuthPage from "./AuthPage";
+import Dashboard from "./Dashboard";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const Home = () => {
   return (
     <>
       <HeroSection />
+      <Dashboard />
       {authModeParam && (
         <AuthPage authMode={authMode} onClose={handleCloseModal} />
       )}

@@ -11,11 +11,12 @@
         {
           "label": "Health Score",
           "valuePath": "accuracy",
-          "unit": "%",
+          "unit": "",
           "classifications": [
-            { "min": 0, "max": 50, "label": "Low", "color": "red" },
-            { "min": 50, "max": 75, "label": "Moderate", "color": "yellow" },
-            { "min": 75, "max": 100, "label": "High", "color": "green" }
+            { "min": 0, "max": 50, "label": "Poor", "color": "red" },
+            { "min": 51, "max": 70, "label": "Fair", "color": "yellow" },
+            { "min": 71, "max": 85, "label": "Good", "color": "lightgreen" },
+            { "min": 86, "max": 100, "label": "Great", "color": "green" }
           ]
         }
       ]

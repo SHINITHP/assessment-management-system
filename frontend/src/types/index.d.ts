@@ -29,3 +29,15 @@ export interface IAuthResponse {
     email: string;
   };
 }
+
+export interface IAssessmentResponse {
+  session_id: string;
+  assessment_id: string;
+  header: string;
+  healthScore: number;
+  heartRate: number | null;
+  bloodPressure: {
+    systolic: number | null;
+    diastolic: number | null;
+  };
+}
