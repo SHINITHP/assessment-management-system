@@ -1,5 +1,13 @@
 export const assessments = [
   {
+    session_id: "session_004",
+    assessment_id: "as_mh_01",
+    mentalHealthData: {
+      stress_score: 45,
+    },
+    timestamp: 1750851234567,
+  },
+  {
     session_id: "session_001",
     accuracy: 80,
     assessmentResultId: "-OK76ANqAq9pvKSl3ZoN",
@@ -17,7 +25,7 @@ export const assessments = [
       LMI: "23.283",
       M_Age: "48",
       WHGR: "0.564",
-      WHR: "0.926"
+      WHR: "0.926",
     },
     exercises: [
       {
@@ -25,7 +33,7 @@ export const assessments = [
           "Shoulders slightly uneven, affecting posture balance.",
           "Head alignment slightly off-center.",
           "Feet aligned properly under shoulders.",
-          "Arms hang naturally by the sides."
+          "Arms hang naturally by the sides.",
         ],
         analysisScore: 75,
         assignReps: 1,
@@ -40,32 +48,32 @@ export const assessments = [
                 fieldText: "Score",
                 fieldUnit: "%",
                 fieldValue: "0.0",
-                shouldDisplay: false
-              }
+                shouldDisplay: false,
+              },
             ],
             correctReps: 1,
             incorrectReps: 0,
             isSkipped: false,
             time: 10,
-            totalReps: 1
-          }
+            totalReps: 1,
+          },
         ],
         side: "left",
         tipsList: [
           "Practice shoulder alignment exercises daily.",
-          "Focus on maintaining head center alignment."
+          "Focus on maintaining head center alignment.",
         ],
         totalReps: 1,
         totalSets: 1,
         variationId: "",
-        variationName: ""
+        variationName: "",
       },
       {
         analysisList: [
           "Head leans slightly forward.",
           "Spine shows slight curvature at neck.",
           "Hips aligned over ankles correctly.",
-          "Knees are slightly bent, affecting stance."
+          "Knees are slightly bent, affecting stance.",
         ],
         analysisScore: 70,
         assignReps: 1,
@@ -80,25 +88,25 @@ export const assessments = [
                 fieldText: "Score",
                 fieldUnit: "%",
                 fieldValue: "0.0",
-                shouldDisplay: false
-              }
+                shouldDisplay: false,
+              },
             ],
             correctReps: 1,
             incorrectReps: 0,
             isSkipped: false,
             time: 22,
-            totalReps: 1
-          }
+            totalReps: 1,
+          },
         ],
         side: "left",
         tipsList: [
           "Engage in neck strengthening exercises.",
-          "Consciously practice standing with straight knees."
+          "Consciously practice standing with straight knees.",
         ],
         totalReps: 1,
         totalSets: 1,
         variationId: "",
-        variationName: ""
+        variationName: "",
       },
       {
         assignReps: 10,
@@ -113,21 +121,21 @@ export const assessments = [
                 fieldText: "Score",
                 fieldUnit: "%",
                 fieldValue: "99.17062",
-                shouldDisplay: false
-              }
+                shouldDisplay: false,
+              },
             ],
             correctReps: 1,
             incorrectReps: 0,
             isSkipped: false,
             time: 61,
-            totalReps: 1
-          }
+            totalReps: 1,
+          },
         ],
         side: "left",
         totalReps: 1,
         totalSets: 1,
         variationId: "",
-        variationName: ""
+        variationName: "",
       },
       {
         assignReps: 45,
@@ -142,28 +150,28 @@ export const assessments = [
                 fieldText: "Score",
                 fieldUnit: "%",
                 fieldValue: "93.333336",
-                shouldDisplay: false
+                shouldDisplay: false,
               },
               {
                 fieldName: "reps",
                 fieldText: "Reps",
                 fieldUnit: "reps",
                 fieldValue: "42",
-                shouldDisplay: true
-              }
+                shouldDisplay: true,
+              },
             ],
             correctReps: 42,
             incorrectReps: 0,
             isSkipped: false,
             time: 90,
-            totalReps: 42
-          }
+            totalReps: 42,
+          },
         ],
         side: "left",
         totalReps: 42,
         totalSets: 1,
         variationId: "",
-        variationName: ""
+        variationName: "",
       },
       {
         assignReps: 1,
@@ -178,29 +186,29 @@ export const assessments = [
                 fieldText: "Score",
                 fieldUnit: "%",
                 fieldValue: "75.11575",
-                shouldDisplay: false
+                shouldDisplay: false,
               },
               {
                 fieldName: "Distance",
                 fieldText: "Distance",
                 fieldUnit: "CM",
                 fieldValue: "45.538174",
-                shouldDisplay: false
-              }
+                shouldDisplay: false,
+              },
             ],
             correctReps: 1,
             incorrectReps: 0,
             isSkipped: false,
             time: 10,
-            totalReps: 1
-          }
+            totalReps: 1,
+          },
         ],
         side: "left",
         totalReps: 1,
         totalSets: 1,
         variationId: "",
-        variationName: ""
-      }
+        variationName: "",
+      },
     ],
     finalPainScore: "pending",
     gender: "male",
@@ -209,7 +217,8 @@ export const assessments = [
     initialVAS: 0,
     isLandmarksUploaded: false,
     laterPainScore: "pending",
-    reportLink: "https://storage.googleapis.com/allycare-prod.appspot.com/fWOr2t8S94e0BIIlcUKkh7m629d2/GthcXa9eHlfnU2BGIIerrAoDZMH2/-OK76AihRKe9xdHFWjuY.pdf?GoogleAccessId=firebase-adminsdk-y618w%40allycare-prod.iam.gserviceaccount.com&Expires=16447017600&Signature=pPula7IsDbCSgkrgINHibG7dtPcToWZ%2BmzLfi82QUnbwIYMIeycm%2BFdSB1IrLv%2FLgra3X2HaGT3OcvmEm0PyTNQ%2Ft%2FYjZWWKEwVAGPBcdibR1irczpl47UdFpFGxLWLswKPooopFj2EHrvvnU88Umgr2vWjk2JIHVr6IMgtaIkTCC9nWXCJ3Zw2NqlIN8bbr4s%2BQk8KIov8vWEplb5neT56%2F%2FGC8W66bThKW5otWsTMC4GB9SFrnFheivFu8rPbGnnTJOilpY9dtKj6pOPr6K%2F50oF7y2pfjCuQILFX9JzCMiVZwam6EcWHileYEPzZdqeE%2FspOYBzwN9%2FC3RE6%2BJQ%3D%3D",
+    reportLink:
+      "https://storage.googleapis.com/allycare-prod.appspot.com/fWOr2t8S94e0BIIlcUKkh7m629d2/GthcXa9eHlfnU2BGIIerrAoDZMH2/-OK76AihRKe9xdHFWjuY.pdf?GoogleAccessId=firebase-adminsdk-y618w%40allycare-prod.iam.gserviceaccount.com&Expires=16447017600&Signature=pPula7IsDbCSgkrgINHibG7dtPcToWZ%2BmzLfi82QUnbwIYMIeycm%2BFdSB1IrLv%2FLgra3X2HaGT3OcvmEm0PyTNQ%2Ft%2FYjZWWKEwVAGPBcdibR1irczpl47UdFpFGxLWLswKPooopFj2EHrvvnU88Umgr2vWjk2JIHVr6IMgtaIkTCC9nWXCJ3Zw2NqlIN8bbr4s%2BQk8KIov8vWEplb5neT56%2F%2FGC8W66bThKW5otWsTMC4GB9SFrnFheivFu8rPbGnnTJOilpY9dtKj6pOPr6K%2F50oF7y2pfjCuQILFX9JzCMiVZwam6EcWHileYEPzZdqeE%2FspOYBzwN9%2FC3RE6%2BJQ%3D%3D",
     reportsDataId: "-OK76BS5l9VB-QMbIOEo",
     timeElapsed: 193,
     timestamp: 1740671597044,
@@ -222,13 +231,13 @@ export const assessments = [
         cardiovascular: {
           cardiac_out: 6.3,
           map: 96,
-          prq: 3.57
+          prq: 3.57,
         },
         fps: 114,
         glucose_info: {
           diabetes_control_score: 57.5,
           hba1c: 5.2,
-          status: "beta"
+          status: "beta",
         },
         heart_scores: {
           HRMax: 191,
@@ -242,8 +251,8 @@ export const assessments = [
           zone_details: {
             highZoneRange: 94,
             lowZoneRange: "--",
-            zone: "Rest"
-          }
+            zone: "Rest",
+          },
         },
         physiological_scores: {
           bloodvolume: "6354.9",
@@ -258,8 +267,8 @@ export const assessments = [
           tbw: "57.13",
           tbwp: "51.47",
           vo2max: "79.83",
-          weight: "111.0"
-        }
+          weight: "111.0",
+        },
       },
       posture: "exercising",
       scan_completion_time: "2025-02-27T15:53:16.002564+00:00",
@@ -270,11 +279,11 @@ export const assessments = [
         bp_sys: 124,
         heart_rate: 75,
         oxy_sat_prcnt: 96,
-        resp_rate: 21
+        resp_rate: 21,
       },
-      wellness_score: 84
+      wellness_score: 84,
     },
-    weight: 111
+    weight: 111,
   },
   {
     session_id: "session_002",
@@ -292,7 +301,7 @@ export const assessments = [
       LMI: "9.60",
       M_Age: "15",
       WHGR: "0.37",
-      WHR: "1.01"
+      WHR: "1.01",
     },
     exercises: [
       {
@@ -308,21 +317,21 @@ export const assessments = [
                 fieldText: "Score",
                 fieldUnit: "%",
                 fieldValue: "0",
-                shouldDisplay: false
-              }
+                shouldDisplay: false,
+              },
             ],
             correctReps: 1,
             incorrectReps: 0,
             isSkipped: false,
             time: 10,
-            totalReps: 1
-          }
+            totalReps: 1,
+          },
         ],
         side: "left",
         totalReps: 1,
         totalSets: 1,
-        variationId: "\"\"",
-        variationName: "\"\""
+        variationId: '""',
+        variationName: '""',
       },
       {
         assignReps: 1,
@@ -337,21 +346,21 @@ export const assessments = [
                 fieldText: "Score",
                 fieldUnit: "%",
                 fieldValue: "0",
-                shouldDisplay: false
-              }
+                shouldDisplay: false,
+              },
             ],
             correctReps: 1,
             incorrectReps: 0,
             isSkipped: false,
             time: 10,
-            totalReps: 1
-          }
+            totalReps: 1,
+          },
         ],
         side: "left",
         totalReps: 1,
         totalSets: 1,
-        variationId: "\"\"",
-        variationName: "\"\""
+        variationId: '""',
+        variationName: '""',
       },
       {
         assignReps: 10,
@@ -366,22 +375,22 @@ export const assessments = [
                 fieldText: "Score",
                 fieldUnit: "%",
                 fieldValue: "15.164222764530614",
-                shouldDisplay: false
-              }
+                shouldDisplay: false,
+              },
             ],
             correctReps: 0,
             incorrectReps: 0,
             isSkipped: false,
             time: 47,
-            totalReps: 0
-          }
+            totalReps: 0,
+          },
         ],
         side: "left",
         totalReps: 0,
         totalSets: 1,
-        variationId: "\"\"",
-        variationName: "\"\""
-      }
+        variationId: '""',
+        variationName: '""',
+      },
     ],
     finalPainScore: "pending",
     gender: "male",
@@ -390,7 +399,8 @@ export const assessments = [
     initialVAS: 0,
     isLandmarksUploaded: false,
     laterPainScore: "pending",
-    reportLink: "https://firebasestorage.googleapis.com/v0/b/rootallyai.appspot.com/o/reports%2FW2g8IThefhPc3SNAv46x2TT3hOB3%2FzHSezoe7w3exoakaC4dGGMneB0u2%2Fgugh_7713.pdf?alt=media&token=388e74f0-616b-43b5-8d14-0424b123d5c8",
+    reportLink:
+      "https://firebasestorage.googleapis.com/v0/b/rootallyai.appspot.com/o/reports%2FW2g8IThefhPc3SNAv46x2TT3hOB3%2FzHSezoe7w3exoakaC4dGGMneB0u2%2Fgugh_7713.pdf?alt=media&token=388e74f0-616b-43b5-8d14-0424b123d5c8",
     timeElapsed: 67,
     timestamp: 1750848025493,
     vitalsMap: {
@@ -402,13 +412,13 @@ export const assessments = [
         cardiovascular: {
           cardiac_out: 5.68,
           map: 95.33,
-          prq: 3.47
+          prq: 3.47,
         },
         fps: 114,
         glucose_info: {
           diabetes_control_score: 77.5,
           hba1c: 5.2,
-          status: "beta"
+          status: "beta",
         },
         heart_scores: {
           HRMax: 191,
@@ -422,8 +432,8 @@ export const assessments = [
           zone_details: {
             highZoneRange: 94,
             lowZoneRange: "--",
-            zone: "Rest"
-          }
+            zone: "Rest",
+          },
         },
         physiological_scores: {
           bloodvolume: "5414.04",
@@ -438,8 +448,8 @@ export const assessments = [
           tbw: "48.07",
           tbwp: "56.55",
           vo2max: "44.08",
-          weight: "85.0"
-        }
+          weight: "85.0",
+        },
       },
       posture: "resting",
       scan_completion_time: "2024-09-26T07:26:16.821174+00:00",
@@ -451,281 +461,10 @@ export const assessments = [
         bp_sys: 110,
         heart_rate: 66,
         oxy_sat_prcnt: 95,
-        resp_rate: 19
+        resp_rate: 19,
       },
-      wellness_score: 84
+      wellness_score: 84,
     },
-    weight: 20
+    weight: 20,
   },
-  {
-    session_id: "session_003",
-    accuracy: 65,
-    assessmentResultId: "-PQ12BCrXy7pL9mJk4vW",
-    assessment_id: "as_card_01",
-    bodyCompositionData: {
-      AGR: "1.20",
-      Age: "35",
-      BFC: "15.5",
-      BMI: "22.8",
-      BMR: "1750.3",
-      FM: "12.5",
-      FMI: "4.2",
-      HeightM: "170.2",
-      LM: "70.5",
-      LMI: "12.3",
-      M_Age: "38",
-      WHGR: "0.48",
-      WHR: "0.82"
-    },
-    exercises: [
-      {
-        analysisList: [
-          "Posture is well-aligned with minor shoulder tilt.",
-          "Head position is optimal."
-        ],
-        analysisScore: 85,
-        assignReps: 1,
-        correctReps: 1,
-        id: 73,
-        name: "Frontal body view",
-        setList: [
-          {
-            additionalFields: [
-              {
-                fieldName: "accuracy",
-                fieldText: "Score",
-                fieldUnit: "%",
-                fieldValue: "85.0",
-                shouldDisplay: false
-              }
-            ],
-            correctReps: 1,
-            incorrectReps: 0,
-            isSkipped: false,
-            time: 15,
-            totalReps: 1
-          }
-        ],
-        side: "right",
-        tipsList: [
-          "Maintain shoulder alignment with regular stretches."
-        ],
-        totalReps: 1,
-        totalSets: 1,
-        variationId: "",
-        variationName: ""
-      },
-      {
-        analysisList: [
-          "Slight forward lean, but spine is straight.",
-          "Knees slightly flexed."
-        ],
-        analysisScore: 60,
-        assignReps: 1,
-        correctReps: 1,
-        id: 74,
-        name: "Side body view",
-        setList: [
-          {
-            additionalFields: [
-              {
-                fieldName: "accuracy",
-                fieldText: "Score",
-                fieldUnit: "%",
-                fieldValue: "60.0",
-                shouldDisplay: false
-              }
-            ],
-            correctReps: 1,
-            incorrectReps: 0,
-            isSkipped: false,
-            time: 18,
-            totalReps: 1
-          }
-        ],
-        side: "right",
-        tipsList: [
-          "Focus on core strength to reduce lean."
-        ],
-        totalReps: 1,
-        totalSets: 1,
-        variationId: "",
-        variationName: ""
-      },
-      {
-        assignReps: 15,
-        correctReps: 12,
-        id: 235,
-        name: "Jog test",
-        setList: [
-          {
-            additionalFields: [
-              {
-                fieldName: "accuracy",
-                fieldText: "Score",
-                fieldUnit: "%",
-                fieldValue: "80.0",
-                shouldDisplay: false
-              }
-            ],
-            correctReps: 12,
-            incorrectReps: 3,
-            isSkipped: false,
-            time: 45,
-            totalReps: 15
-          }
-        ],
-        side: "right",
-        totalReps: 15,
-        totalSets: 1,
-        variationId: "",
-        variationName: ""
-      },
-      {
-        assignReps: 30,
-        correctReps: 25,
-        id: 259,
-        name: "Squat",
-        setList: [
-          {
-            additionalFields: [
-              {
-                fieldName: "accuracy",
-                fieldText: "Score",
-                fieldUnit: "%",
-                fieldValue: "83.33",
-                shouldDisplay: false
-              },
-              {
-                fieldName: "reps",
-                fieldText: "Reps",
-                fieldUnit: "reps",
-                fieldValue: "25",
-                shouldDisplay: true
-              }
-            ],
-            correctReps: 25,
-            incorrectReps: 5,
-            isSkipped: false,
-            time: 120,
-            totalReps: 30
-          }
-        ],
-        side: "right",
-        totalReps: 30,
-        totalSets: 1,
-        variationId: "",
-        variationName: ""
-      },
-      {
-        assignReps: 1,
-        correctReps: 1,
-        id: 281,
-        name: "Stand and reach",
-        setList: [
-          {
-            additionalFields: [
-              {
-                fieldName: "accuracy",
-                fieldText: "Score",
-                fieldUnit: "%",
-                fieldValue: "90.0",
-                shouldDisplay: false
-              },
-              {
-                fieldName: "Distance",
-                fieldText: "Distance",
-                fieldUnit: "CM",
-                fieldValue: "25.0",
-                shouldDisplay: false
-              }
-            ],
-            correctReps: 1,
-            incorrectReps: 0,
-            isSkipped: false,
-            time: 12,
-            totalReps: 1
-          }
-        ],
-        side: "right",
-        totalReps: 1,
-        totalSets: 1,
-        variationId: "",
-        variationName: ""
-      }
-    ],
-    finalPainScore: "pending",
-    gender: "female",
-    height: 170,
-    initialPainScore: 0,
-    initialVAS: 0,
-    isLandmarksUploaded: true,
-    laterPainScore: "pending",
-    reportLink: "https://firebasestorage.googleapis.com/v0/b/rootallyai.appspot.com/o/reports%2FX9k4PqLmRt8jY5vNz12x3TT4hPQ4%2FyH9tApc6v9xZk9mBcD5eGGMneB0u2%2Fxyz_1234.pdf?alt=media&token=abc12345-6789-4def-9012-345678901234",
-    timeElapsed: 150,
-    timestamp: 1750851234567,
-    vitalsMap: {
-      api_key: "CNCPg45zbVxGlB7r74xb",
-      employee_id: "SCAN_USER",
-      entry_time: "2024-10-01 09:15:00.000000+00:00",
-      health_risk_score: 12,
-      metadata: {
-        cardiovascular: {
-          cardiac_out: 5.9,
-          map: 92,
-          prq: 3.6
-        },
-        fps: 110,
-        glucose_info: {
-          diabetes_control_score: 65.0,
-          hba1c: 5.1,
-          status: "alpha"
-        },
-        heart_scores: {
-          HRMax: 185,
-          HRR: "120",
-          THRR: "90 - 130",
-          heart_utilized: "55",
-          pNN50_per: 45.20,
-          rmssd: 30.15,
-          sdnn: 55.30,
-          stress_index: 1.2,
-          zone_details: {
-            highZoneRange: 92,
-            lowZoneRange: "60",
-            zone: "Moderate"
-          }
-        },
-        physiological_scores: {
-          bloodvolume: "5200.0",
-          bmi: "22.8",
-          bodyfat: "15.5",
-          cal_carb: "85.0",
-          cal_fat: "15.0",
-          dob: "1990-05-15",
-          gender: "female",
-          height: "170.0",
-          intensity: "Moderate",
-          tbw: "50.0",
-          tbwp: "52.0",
-          vo2max: "55.0",
-          weight: "66.0"
-        }
-      },
-      posture: "resting",
-      scan_completion_time: "2024-10-01T09:15:05.000000+00:00",
-      scan_id: "7e890abc-5fed-4a12-8b9c-3d45f6e7890a",
-      statusCode: 200,
-      user_id: "2def5678-9abc-4e12-3456-7890fghi1234",
-      vitals: {
-        bp_dia: 78,
-        bp_sys: 118,
-        heart_rate: 72,
-        oxy_sat_prcnt: 97,
-        resp_rate: 18
-      },
-      wellness_score: 88
-    },
-    weight: 66
-  }
 ];

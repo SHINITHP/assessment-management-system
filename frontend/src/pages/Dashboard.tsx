@@ -56,10 +56,25 @@ const Dashboard = () => {
   const handleGenerateReport = async (session_Id: string) => {
     setLoadingSession(session_Id);
     try {
-      await generateReport(session_Id);
-      toast.success("Report generate successful!");
+      const response = await generateReport(session_Id);
+
+      const blob = response.data;
+      const url = window.URL.createObjectURL(blob);
+
+      // Create temporary link to download
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${session_Id}_report.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      // Revoke the object URL to free memory
+      window.URL.revokeObjectURL(url);
+
+      toast.success("Report generated successfully!");
     } catch (error: any) {
-      toast.error("Report Generation Failed");
+      toast.error(`Report Generation Failed: ${error.message}`);
     } finally {
       setLoadingSession(null);
     }

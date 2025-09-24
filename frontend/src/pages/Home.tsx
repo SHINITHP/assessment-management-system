@@ -29,7 +29,6 @@ const Home = () => {
   return (
     <>
       <HeroSection />
-      <Dashboard />
       {authModeParam && (
         <AuthPage authMode={authMode} onClose={handleCloseModal} />
       )}

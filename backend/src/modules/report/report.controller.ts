@@ -16,8 +16,10 @@ export const getAssessments = async (req: Request, res: Response) => {
       }
     }
 
-    const assessmentList = assessments.map(assessment => {
-      const config = configs[assessment.assessment_id] || { template: { header: "Unknown Report" } };
+    const assessmentList = assessments.map((assessment) => {
+      const config = configs[assessment.assessment_id] || {
+        template: { header: "Unknown Report" },
+      };
       return {
         session_id: assessment.session_id,
         assessment_id: assessment.assessment_id,
@@ -32,7 +34,6 @@ export const getAssessments = async (req: Request, res: Response) => {
     });
 
     res.json(assessmentList);
-
   } catch (err: any) {
     console.error("Error fetching assessments:", err);
     res.status(500).json({
@@ -64,7 +65,22 @@ export const reportGenerator = async (req: Request, res: Response) => {
     const config = await fs.readJson(configPath);
     const pdfPath = await generatePDF(session_Id, assessment, config);
 
-    res.json({ success: true, message: `PDF generated at ${pdfPath}` });
+    res.setHeader("Content-Type", "application/pdf");
+
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename="${assessment.session_id}_report.pdf"`
+    );
+    res.sendFile(pdfPath, (err) => {
+      if (err) {
+        console.error("Error sending file:", err);
+        res.status(500).json({ error: "Failed to send PDF" });
+      }
+      // Delete the PDF after sending
+      fs.unlink(pdfPath).catch((err) =>
+        console.error("Error deleting PDF:", err)
+      );
+    });
   } catch (err: any) {
     console.error("Error Details:", err);
     res.status(500).json({

@@ -6,8 +6,12 @@ import {
   sendOTP,
   verifyOTPToken,
 } from "../../utils/otp";
-import { ISignUpVerifyOTPPayload } from "../../types";
-import { generateAccessToken } from "../../utils/generateTokens";
+import {
+  generateAccessToken,
+  generateRefreshToken,
+  generateTokens,
+  verifyJWTToken,
+} from "../../utils/generateTokens";
 
 export const signUp = async (req: Request, res: Response) => {
   const { email, password, fullName } = req.body;
@@ -61,12 +65,18 @@ export const verifySignUpOTP = async (req: Request, res: Response) => {
     await user.save();
 
     // accessToken
-    const accessToken = generateAccessToken({
+    const { accessToken, refreshToken } = generateTokens({
       userId: user._id.toString(),
       email: user.email,
     });
 
     // refresh token
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
 
     return res.status(200).json({
       message: "User verified successfully",
@@ -78,6 +88,64 @@ export const verifySignUpOTP = async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     console.error(error);
+  }
+};
+
+export const refreshToken = async (req: Request, res: Response) => {
+  try {
+    const token = req.cookies.refreshToken;
+    if (!token) {
+      return res.status(401).json({ message: "No refresh token provided" });
+    }
+
+    // Verify refresh token
+    const decoded = verifyJWTToken(token);
+    if (!decoded) {
+      return res
+        .status(403)
+        .json({ message: "Invalid or expired refresh token" });
+    }
+
+    // verify user exist or not
+    const user = await User.findById(decoded.userId).select("-password");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Generate new access token
+    const accessToken = generateAccessToken({
+      userId: decoded.userId,
+      email: decoded.email,
+    });
+
+    const timeLeft = decoded.exp * 1000 - Date.now();
+    let newRefreshToken = token;
+    if (timeLeft < 24 * 60 * 60 * 1000) {
+      newRefreshToken = generateRefreshToken({
+        userId: decoded.userId,
+        email: decoded.email,
+      });
+      res.cookie("refreshToken", newRefreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      });
+    }
+
+    // Send new access token
+    return res.status(200).json({
+      accessToken,
+      user: {
+        id: user._id,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(403)
+      .json({ message: "Invalid or expired refresh token" });
   }
 };
 
@@ -98,13 +166,21 @@ export const signIn = async (req: Request, res: Response) => {
     }
 
     // accessToken
-    const accessToken = generateAccessToken({
+    const { accessToken, refreshToken } = generateTokens({
       userId: user._id.toString(),
       email: user.email,
     });
 
+    // refresh token
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
+
     return res.status(200).json({
-      message: "User logged successfully",
+      message: "User Logged successfully",
       accessToken,
       user: {
         id: user._id,

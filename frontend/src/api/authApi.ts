@@ -35,6 +35,7 @@ export const signIn = async (
 export const verifyOTP = async (
   payload: IverifyOtpPayload
 ): Promise<AxiosResponse<IAuthResponse>> => {
+
   const response = await api.post<IAuthResponse>("/auth/verify-otp", payload);
 
   //save accesstoken to localstorage
