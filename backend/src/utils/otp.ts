@@ -2,11 +2,17 @@ import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // Use TLS on port 587
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  connectionTimeout: 10000, // 10 seconds timeout
+  greetingTimeout: 5000, // 5 seconds for initial greeting
+  logger: true, // Enable logs for debugging
+  debug: true, // More detailed output
 });
 
 export const generateOTP = (): string => {
@@ -36,14 +42,14 @@ export const verifyOTPToken = (
 
     if (decoded.otp !== otp) {
       console.warn(`Invalid OTP for token`);
-      return null; 
+      return null;
     }
 
     console.info(`Verified OTP token for ${decoded.email}`);
     return { email: decoded.email };
   } catch (error) {
     console.error("Error verifying OTP token:", error);
-    return null; 
+    return null;
   }
 };
 
