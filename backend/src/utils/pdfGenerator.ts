@@ -76,7 +76,6 @@ export async function generatePDF(
   const browser = await puppeteer.launch({
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    executablePath: executablePath || "/opt/render/.cache/puppeteer/chrome/linux/chrome-linux64/chrome",
   });
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: "networkidle0" });

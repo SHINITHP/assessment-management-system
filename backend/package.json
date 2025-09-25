@@ -7,7 +7,6 @@
   "type": "commonjs",
   "main": "index.ts",
   "scripts": {
-    "postinstall": "puppeteer browsers install chrome@140.0.7339.82",
     "build": "tsc && copyfiles -u 1 src/config/**/* dist/",
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts"
@@ -29,7 +28,7 @@
     "lodash": "^4.17.21",
     "mongoose": "^8.18.1",
     "nodemailer": "^7.0.6",
-    "puppeteer": "^24.22.0"
+    "puppeteer": "^24.22.3"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
