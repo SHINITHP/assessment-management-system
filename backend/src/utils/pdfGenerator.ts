@@ -1,4 +1,5 @@
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 import fs from "fs-extra";
 import path from "path";
 import ejs from "ejs";
@@ -63,20 +64,22 @@ export async function generatePDF(
   };
 
   const templatePath = path.join(__dirname, "../../templates/report.ejs");
-  const templateExists = fs.existsSync(templatePath);
-  if (!templateExists) {
+  if (!fs.existsSync(templatePath)) {
     throw new Error(`Template file not found: ${templatePath}`);
   }
   const html = await ejs.renderFile(templatePath, renderedData);
 
   const pdfPath = path.join(__dirname, "../../reports", pdfFilename);
   await fs.ensureDir(path.dirname(pdfPath));
-  const executablePath = await puppeteer.executablePath();
-  console.log("Puppeteer executable path:", executablePath);
+
+  // Get runtime properties from the chromium module
   const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: chromium.args,
+    executablePath: await chromium.executablePath(),
+    headless: true, 
+    defaultViewport: null,
   });
+
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: "networkidle0" });
   await page.pdf({
@@ -85,6 +88,7 @@ export async function generatePDF(
     printBackground: true,
     displayHeaderFooter: false,
   });
+
   await browser.close();
   return pdfPath;
 }
