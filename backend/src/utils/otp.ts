@@ -2,17 +2,24 @@ import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: "smtp.sendgrid.net",
   port: 587,
-  secure: false, // Use TLS on port 587
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: "apikey",
+    pass: process.env.SENDGRID_API_KEY,
   },
-  connectionTimeout: 10000, // 10 seconds timeout
-  greetingTimeout: 5000, // 5 seconds for initial greeting
-  logger: true, // Enable logs for debugging
-  debug: true, // More detailed output
+  connectionTimeout: 10000,
+  greetingTimeout: 5000,
+  logger: true,
+  debug: true,
+});
+
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("SendGrid connection failed:", error);
+  } else {
+    console.log("SendGrid is ready to send emails");
+  }
 });
 
 export const generateOTP = (): string => {
