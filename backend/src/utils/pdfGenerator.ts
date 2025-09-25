@@ -74,7 +74,7 @@ export async function generatePDF(
   const browser = await puppeteer.launch({
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || (await puppeteer.executablePath()),
+    executablePath: await puppeteer.executablePath(), // Dynamically resolve
   });
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: "networkidle0" });

@@ -7,7 +7,7 @@
   "type": "commonjs",
   "main": "index.ts",
   "scripts": {
-    "postinstall": "puppeteer browsers install chrome",
+    "postinstall": "puppeteer browsers install chrome@140.0.7339.82",
     "build": "tsc && copyfiles -u 1 src/config/**/* dist/",
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts"
