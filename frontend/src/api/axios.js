@@ -20,7 +20,7 @@ api.interceptors.response.use((response) => response, async (error) => {
         originalRequest.retry = true;
         try {
             // call the refresh token :
-            const res = await axios.post("http://localhost:5000/api/auth/refresh-token", {}, { withCredentials: true });
+            const res = await axios.post("https://assessment-management-system-2.onrender.com/api/auth/refresh-token", {}, { withCredentials: true });
             localStorage.setItem("accessToken", res.data.accessToken);
             originalRequest.headers["Authorization"] = `Bearer ${res.data.accessToken}`;
             return axios(originalRequest);
