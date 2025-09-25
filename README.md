@@ -42,7 +42,7 @@
 
 <!-- Set up environment variables in backend/.env -->
 
-    -MONGO_URL=mongodb+srv://             <username>:<password>@cluster0.xxxxx.mongodb.net/assessment?retryWrites=true&w=majority
+    -MONGO_URL=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/assessment?retryWrites=true&w=majority
     -OTP_JWT_SECRET=Assessment_Management_otp_secret
     -JWT_SECRET=your_jwt_secret
     -SENDGRID_API_KEY=
