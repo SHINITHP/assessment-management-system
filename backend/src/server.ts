@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://assessment-management-system-black.vercel.app",
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
   })

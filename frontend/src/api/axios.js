@@ -1,6 +1,6 @@
 import axios from "axios";
 const api = axios.create({
-    baseURL: "http://localhost:5000/api",
+    baseURL: "https://assessment-management-system-2.onrender.com/api",
     withCredentials: true, // for using cookies
 });
 // request interceptor to attach accessToken - no need to attach it everytime
