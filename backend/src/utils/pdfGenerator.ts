@@ -13,7 +13,6 @@ export async function generatePDF(
   data: any,
   config: any
 ): Promise<string> {
-
   const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
   const assessmentId = data.assessment_id || "unknown";
   const uniqueId = `${sessionId}_${assessmentId}_${timestamp}`;
@@ -22,16 +21,15 @@ export async function generatePDF(
   const renderedData = {
     header: config.template.header,
     footer: new Date().toLocaleDateString(),
-
     sections: (config.sections || []).map((section: any) => ({
       title: section.title,
       fields: (section.fields || []).map((field: any) => {
         const path = field.valuePath || field.jsonPath;
         if (!path) return null;
 
-        const value = extractValue(data, path); //extract path value from data.ts
-        const isArray = Array.isArray(value); // to find the field is an array or a single object!
-        const score = parseFloat(value); //extract path value from data.ts
+        const value = extractValue(data, path);
+        const isArray = Array.isArray(value);
+        const score = parseFloat(value);
         const cls = classifyValue(score || value, field.classifications || []);
         const clsArray = field.classifications || [];
 
@@ -42,13 +40,13 @@ export async function generatePDF(
           unit: field.unit || "",
           clsLabel: cls.label,
           color: cls.color,
-          textColorClass: cls.color ? `text-${cls.color}-600` : "text-gray-800", // for span text
-          bgColorClass: cls.color ? `bg-${cls.color}-100` : "bg-gray-200", // for bg div
+          textColorClass: cls.color ? `text-${cls.color}-600` : "text-gray-800",
+          bgColorClass: cls.color ? `bg-${cls.color}-100` : "bg-gray-200",
           colorClass: cls.color ? `text-${cls.color}-500` : "",
           classifications: clsArray.map((c: any) => ({
             label: c.label,
             color: c.color || "yellow-600",
-            bgColor: c.color || "rgba(253, 230, 138, 0.5)", // optional for bg styling
+            bgColor: c.color || "rgba(253, 230, 138, 0.5)",
             min: c.min,
           })),
           sections: (field.sections || []).map((section: any) => {
@@ -76,6 +74,7 @@ export async function generatePDF(
   const browser = await puppeteer.launch({
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || (await puppeteer.executablePath()),
   });
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: "networkidle0" });
