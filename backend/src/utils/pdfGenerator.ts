@@ -71,10 +71,12 @@ export async function generatePDF(
 
   const pdfPath = path.join(__dirname, "../../reports", pdfFilename);
   await fs.ensureDir(path.dirname(pdfPath));
+  const executablePath = await puppeteer.executablePath();
+  console.log("Puppeteer executable path:", executablePath);
   const browser = await puppeteer.launch({
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    executablePath: await puppeteer.executablePath(), // Dynamically resolve
+    executablePath: executablePath || "/opt/render/.cache/puppeteer/chrome/linux/chrome-linux64/chrome",
   });
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: "networkidle0" });
