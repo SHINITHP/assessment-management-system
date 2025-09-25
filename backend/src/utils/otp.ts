@@ -1,26 +1,6 @@
 import jwt from "jsonwebtoken";
-import nodemailer from "nodemailer";
+import axios from "axios";
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.sendgrid.net",
-  port: 587,
-  auth: {
-    user: "apikey",
-    pass: process.env.SENDGRID_API_KEY,
-  },
-  connectionTimeout: 10000,
-  greetingTimeout: 5000,
-  logger: true,
-  debug: true,
-});
-
-transporter.verify((error, success) => {
-  if (error) {
-    console.error("SendGrid connection failed:", error);
-  } else {
-    console.log("SendGrid is ready to send emails");
-  }
-});
 
 export const generateOTP = (): string => {
   const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
@@ -66,14 +46,20 @@ export const sendOTP = async (
   token: string
 ): Promise<void> => {
   try {
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Your OTP Code",
-      html: `<p>Your OTP is <strong>${otp}</strong>. It expires in 5 minutes.</p>`,
-    };
-
-    await transporter.sendMail(mailOptions);
+    const response = await axios.post(
+      "https://api.sendgrid.com/v3/mail/send",
+      {
+        personalizations: [{ to: [{ email }], subject: "Your OTP Code" }],
+        from: { email: process.env.EMAIL_USER },
+        content: [{ type: "text/html", value: `<p>Your OTP is <strong>${otp}</strong>. It expires in 5 minutes.</p>` }],
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
     console.info(`OTP sent to ${email}`);
   } catch (error) {
     console.error(`Error sending OTP to ${email}:`, error);
