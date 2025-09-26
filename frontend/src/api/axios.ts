@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://assessment-management-system-2.onrender.com/api",
   withCredentials: true, // for using cookies
 });
 
@@ -28,17 +28,21 @@ api.interceptors.response.use(
       try {
         // call the refresh token :
         const res = await axios.post(
-          "http://localhost:5000/api/auth/refresh-token",
+          "https://assessment-management-system-2.onrender.com/api/auth/refresh-token",
           {},
-          { withCredentials: true }
+          {
+            withCredentials: true,
+            headers: { "Content-Type": "application/json" },
+          }
         );
         localStorage.setItem("accessToken", res.data.accessToken);
         originalRequest.headers[
           "Authorization"
         ] = `Bearer ${res.data.accessToken}`;
-        return axios(originalRequest);
+        return api(originalRequest);
       } catch (error) {
         console.error("Refresh token failed", error);
+        localStorage.removeItem("accessToken");
         window.location.href = "/?authMode=sign-in"; // redirect to login
       }
     }

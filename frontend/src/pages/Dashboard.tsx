@@ -6,13 +6,11 @@ import { IAssessmentResponse } from "@/types";
 import { AxiosResponse } from "axios";
 import {
   Activity,
-  GaugeCircle,
   Heart,
   Loader2,
-  Stethoscope,
   TrendingUp,
 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Dashboard = () => {
